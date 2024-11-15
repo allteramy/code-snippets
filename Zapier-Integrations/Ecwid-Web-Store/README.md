@@ -1,11 +1,13 @@
-# Ecwid Web Store - Zapier Python Code
+# Ecwid Web Store Integration - Zapier Python Code
 
 For this project, we needed to take in the Ecwid sale data and extract purchase information for a single product in order to track each product sale separately in Salesforce as its own opportunity record. The order number would be added to the opportunity so that orders with multiple products could still be tracked collectively via reports.
+
+#### Systems: Ecwid | Zapier | Salesforce
 
 ## Zap setup:
 
 <br>
-Steps 1-4 involved taking in the store order and filtering for the specific product # (00002 in this example - a resource guide).
+Steps 1-4 involved taking in the store order and filtering for the specific product number (00002 in this example - a resource guide).
 <br>
 <br>
 <br>
@@ -87,4 +89,14 @@ return z
 
 #return entries    //works, but we wanted to return size too, so we craft a customized string y above
 
+#version: v1. "V2" is in use by Clery C. Jun 29, 2023
+
 ```
+
+Sample Input:
+
+![alt text](./assets/03-Product-Input.jpg "Data Input - Ecwid Order")
+
+Sample Output:
+
+![alt text](./assets/04-ProductQuantity-Output.jpg "Data Output - Code")
