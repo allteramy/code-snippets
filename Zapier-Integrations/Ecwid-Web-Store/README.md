@@ -21,14 +21,14 @@ Code (Python)
 ```python
 import json
 
-# Testing for different quantities and scu numbers to find the one we're looking for
-# in this partular Zap - '00002' or the CSA Guide
-# sample quantity q_list = ['1', '3', '2', '4']
-# sample sku_list = ['00001', '00003', '00003', '00003']
+# This code tests for different quantities and scu numbers to find the one we're looking for (In this partular Zap - '00002' or the CSA Guide)
+#   sample quantity q_list = ['1', '3', '2', '4']
+#   sample sku_list = ['00001', '00003', '00003', '00003']
 
-# split input_data into three separate lists for quanity, sku, and options
-# here's an example of what input_data would look like
-# input_data = {'sku': '00003,00003', 'quantity': '1,1'}
+# Steps: split input_data into three separate lists for quanity, sku, and options
+#   Here's an example of what input_data would look like:
+#       input_data = {'sku': '00003,00003', 'quantity': '1,1'}
+
 q_list = list(input_data.get('quantity').split(","))
 sku_list = list(input_data.get('sku').split(","))
 opt_list = list(input_data.get('options').split(","))
