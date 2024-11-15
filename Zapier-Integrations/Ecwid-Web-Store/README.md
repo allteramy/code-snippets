@@ -6,20 +6,22 @@ For this project, we needed to take in the Ecwid sale data and extract purchase 
 
 ## Zap setup:
 
+
+### Steps 1 through 4 
+
+These steps involved taking in the store order and filtering for the specific product number (00002 in this example - a resource guide).
 <br>
-Steps 1-4 involved taking in the store order and filtering for the specific product number (00002 in this example - a resource guide).
 <br>
-<br>
-<br>
+
 
 ![alt text](./assets/01-Ecwid-CSAGuide-Steps1-4.jpg "Steps 1-4")
 
-
-## Step 5 - Determine Product Quantities & Options
+___
+### Step 5 - Determine Product Quantities & Options
 
 ![alt text](./assets/02-CSAGuide-DetermineOptions.jpg "Zap web listing")
 
-Code (Python)
+Step 5 Code (Python)
 ```python
 import json
 
@@ -100,3 +102,34 @@ Sample Input:
 Sample Output:
 
 ![alt text](./assets/04-ProductQuantity-Output.jpg "Data Output - Code")
+
+
+
+___
+
+
+### Steps 6 through 8 
+
+Here we check if the order is paid and determine the payment method and pricebook entry IDs.
+
+<br>
+
+![alt text](./assets/05-Steps6-8.jpg "Steps 6-8")
+
+
+Step 6 code:
+
+```python
+
+print(input_data)
+
+if 'PAID' in input_data.values():
+    status = 'True'
+else:
+    status = 'False'
+
+return{
+    'status': status if status else 'ERROR'
+}
+
+```
