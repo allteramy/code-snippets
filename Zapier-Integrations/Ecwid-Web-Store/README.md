@@ -5,7 +5,7 @@ For this project, we needed to take in the Ecwid sale data and extract purchase 
 ## Zap setup:
 
 <br>
-Steps 1-4 involved taking in the store order and filtering for the specific product # (0001 in this example - a digital video product).
+Steps 1-4 involved taking in the store order and filtering for the specific product # (00002 in this example - a resource guide).
 <br>
 <br>
 <br>
