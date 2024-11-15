@@ -115,7 +115,13 @@ Here we check if the order is paid and determine the payment method and priceboo
 <br>
 
 ![alt text](./assets/05-Steps6-8.jpg "Steps 6-8")
+___
 
+### Step 6 - Determine Payment Status
+
+<br>
+
+![alt text](./assets/06-Step6-Setup.jpg "Step 6 setup/input")
 
 Step 6 code:
 
@@ -133,3 +139,24 @@ return{
 }
 
 ```
+
+Sample Input:
+
+![alt text](./assets/06-Step6-Input.jpg "Step 6 input")
+
+Sample Output:
+
+This code correctly returns "False" since the payment status is "AWAITING_PAYMENT."
+
+![alt text](./assets/06-Step6-Output.jpg "Step 6 output")
+___
+
+### Step 7 - Determine Payment Method
+<br>
+
+![alt text](./assets/07-Step7-Setup.jpg "Step 7 Setup")
+
+
+
+
+
