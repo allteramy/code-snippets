@@ -40,7 +40,7 @@ ___
 [<b>🡅</b>](#ecwid-web-store-integration---zapier-python-code)
 <br>
 
-<img src="./assets/02-CSAGuide-DetermineOptions.jpg" alt="Zap web listing" style="border:3px solid gray"></img>
+<img src="./assets/02-CSAGuide-DetermineOptions.jpg" alt="Zap web listing" style="border:3px solid gray" />
 
 
 <br>
