@@ -1,6 +1,8 @@
 # Ecwid Web Store Integration - Zapier Python Code
 
-For this project, we needed to take in the Ecwid sale data and extract purchase information for a single product in order to track each product sale separately in Salesforce as its own opportunity record. The order number would be added to the opportunity so that orders with multiple products could still be tracked collectively via reports.
+For this project, we needed to take in the Ecwid sale data and extract purchase information for a single product in order to track each product sale separately in Salesforce as its own opportunity record. The order number would be added to the opportunity so that orders with multiple products could still be tracked collectively via reports. 
+
+This documentation shows how I configured this zap and some custom Python code written to complete various tasks.
 
 #### Systems: Ecwid | Zapier | Salesforce
 
@@ -9,17 +11,25 @@ For this project, we needed to take in the Ecwid sale data and extract purchase 
 
 ### Steps 1 through 4 
 
-These steps involved taking in the store order and filtering for the specific product number (00002 in this example - a resource guide).
+These steps involved taking in the store order and filtering for the specific product number (00002 in this example - a resource guide), as well as some formatting needed for subsequent steps.
 <br>
 <br>
 
 
 ![alt text](./assets/01-Ecwid-CSAGuide-Steps1-4.jpg "Steps 1-4")
 
+
+*Note: the step that involves extracting the domain from an email address was something that worked well for our organization to use. Since our main customer base consists of higher education professionals, we had the unique situation that customer email domains would match up with an institution's website domain more often than not. We were able to use this to more accurately match customers with the correct account. 
+
 ___
 ### Step 5 - Determine Product Quantities & Options
 
+<br>
+
 ![alt text](./assets/02-CSAGuide-DetermineOptions.jpg "Zap web listing")
+
+
+<br>
 
 Step 5 Code (Python)
 ```python
@@ -94,6 +104,7 @@ return z
 #version: v1. "V2" is in use by Clery C. Jun 29, 2023
 
 ```
+<br>
 
 Sample Input:
 
@@ -123,6 +134,8 @@ ___
 
 ![alt text](./assets/06-Step6-Setup.jpg "Step 6 setup/input")
 
+<br>
+
 Step 6 code:
 
 ```python
@@ -139,6 +152,7 @@ return{
 }
 
 ```
+<br>
 
 Sample Input:
 
@@ -156,6 +170,35 @@ ___
 
 ![alt text](./assets/07-Step7-Setup.jpg "Step 7 Setup")
 
+<br>
+
+Step 7 code:
+
+```python
+if 'PayPal' in input_data.values():
+    paymentType = 'Credit Card'
+elif 'Purchase Order' in input_data.values():
+    paymentType = 'Purchase Order'
+elif 'Check' in input_data.values():
+    paymentType = 'Check'
+else:
+    paymentType = 'Paypal'
+    
+return{
+    'paymentType': paymentType if paymentType else 'ERROR'
+}
+```
+
+<br>
+
+Sample Input:
+
+![alt text](./assets/07-Step7-Input.jpg "Step 7 input")
+
+
+Sample Output:
+
+![alt text](./assets/07-Step7-Output.jpg "Step 7 output")
 
 
 
