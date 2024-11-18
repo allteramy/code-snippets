@@ -27,7 +27,7 @@ These steps involved taking in the store order and filtering for the specific pr
 <br>
 
 
-<div style="border: 2px solid gray;"><img src="./assets/01-Ecwid-CSAGuide-Steps1-4.jpg" alt="Steps 1-4" /></div>
+<span style="border: 2px solid gray;"><img src="./assets/01-Ecwid-CSAGuide-Steps1-4.jpg" alt="Steps 1-4" /></span>
 
 
 <br>
