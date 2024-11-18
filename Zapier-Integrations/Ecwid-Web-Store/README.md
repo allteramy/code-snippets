@@ -6,6 +6,16 @@ This documentation shows how I configured this zap and some custom Python code w
 
 #### Systems: Ecwid | Zapier | Salesforce
 
+___
+
+Quick links:
+
+[Determine Ecwid Product Quantities & Options](#step-5---determine-product-quantities--options)
+
+
+
+___
+
 ## Zap setup:
 
 
@@ -16,14 +26,18 @@ These steps involved taking in the store order and filtering for the specific pr
 <br>
 
 
-![alt text](./assets/01-Ecwid-CSAGuide-Steps1-4.jpg "Steps 1-4")
+<img src="./assets/01-Ecwid-CSAGuide-Steps1-4.jpg" alt="Steps 1-4" style="border:3px solid gray"></img>
 
+
+<br>
 
 *Note: the step that involves extracting the domain from an email address was something that worked well for our organization to use. Since our main customer base consists of higher education professionals, we had the unique situation that customer email domains would match up with an institution's website domain more often than not. We were able to use this to more accurately match customers with the correct account. 
 
 ___
-### Step 5 - Determine Product Quantities & Options
 
+### Step 5 - Determine Product Quantities & Options 
+
+[<b>⤒</b>](#ecwid-web-store-integration---zapier-python-code)
 <br>
 
 ![alt text](./assets/02-CSAGuide-DetermineOptions.jpg "Zap web listing")
@@ -200,6 +214,124 @@ Sample Output:
 
 ![alt text](./assets/07-Step7-Output.jpg "Step 7 output")
 
+<br>
+
+___
+
+### Step 8: Determine Pricebook Entry IDs (in Salesforce)
+<br>
 
 
+![alt text](./assets/08-Step8-Setup.jpg "Step 8 Setup")
 
+<br>
+
+Step 8 code:
+
+
+```python
+availableOptions = {"1 Guidebook": "01uF000000KgJw2IAF", "5 Pack - $15": "01uF000000La0yhIAB", "25 Pack - $15": "01uF000000La0ymIAB", "50 Pack - $15": "01uF000000La0yrIAB"}
+selectedOptions = list(input_data.get('option').split(","))
+sku_list = list(input_data.get('sku').split(","))
+
+if('00001' in sku_list):
+	index = sku_list.index('00001')
+	sku_list.pop(index)
+    
+if('00009' in sku_list):
+	index = sku_list.index('00009')
+	sku_list.pop(index)
+
+o_index = "Option"
+pEntrySelect = {}
+i = 1
+
+for x in range(len(selectedOptions)):
+    if sku_list[x] == '00002':
+        o_index = o_index + str(i)
+        pEntrySelect[o_index] = availableOptions.get(selectedOptions[x])
+        o_index = "Option"
+        i += 1
+
+return pEntrySelect
+
+```
+
+<br>
+
+Sample Input:
+<br>
+
+![alt text](./assets/08-Step8-Input.jpg "Step 8 Input")
+
+<br>
+
+Sample Output:
+<br>
+
+![alt text](./assets/08-Step8-Output.jpg "Step 9 Output")
+
+<br>
+
+___
+
+### Step 9: Determine Selected Option Totals
+
+<br>
+
+![alt text](./assets/09-Step9-Setup.jpg "Step 9 Setup")
+
+<br>
+
+Step 9 code:
+
+```python
+
+selectedPrices = list(input_data.get('totals').split(","))
+selectedOptions = list(input_data.get('option').split(","))
+sku_list = list(input_data.get('sku').split(","))
+q_list = list(input_data.get('quantity').split(","))
+
+if('00001' in sku_list):
+	index = sku_list.index('00001')
+	selectedOptions.insert(index, 'None')
+    
+if('00009' in sku_list):
+	index = sku_list.index('00009')
+	selectedOptions.insert(index, 'None')
+
+o_index = ''
+pEntrySelect = {}
+i = 1
+optionText = ''
+paid = 0
+
+for x in range(len(sku_list)):
+    if sku_list[x] == '00002':
+        o_index = 'Option' + str(i)
+        pEntrySelect[o_index] = float(selectedPrices[x]) * float(q_list[x])
+        if i > 1:
+            optionText = optionText + "," + selectedOptions[x]
+        else:
+            optionText = optionText + selectedOptions[x]
+        i += 1
+        paid += float(selectedPrices[x]) * float(q_list[x])
+
+pEntrySelect['Option Text'] = optionText
+pEntrySelect['Total Paid'] = paid
+#print(selectedOptions)
+return pEntrySelect
+
+```
+
+<br>
+
+Sample Input:
+
+![alt text](./assets/09-Step9-Input.jpg "Step 9 Input")
+
+<br>
+
+Sample Output:
+
+![alt text](./assets/09-Step9-Output.jpg "Step 9 Output")
