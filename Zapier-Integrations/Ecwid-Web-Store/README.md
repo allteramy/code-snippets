@@ -1,3 +1,9 @@
+<style>
+  img[src$="border"] {
+    border: 5px solid gray;
+  }
+</style>
+
 # Ecwid Web Store Integration - Zapier Python Code
 
 For this project, we needed to take in the Ecwid sale data and extract purchase information for a single product in order to track each product sale separately in Salesforce as its own opportunity record. The order number would be added to the opportunity so that orders with multiple products could still be tracked collectively via reports. 
@@ -42,6 +48,7 @@ ___
 
 <img src="./assets/02-CSAGuide-DetermineOptions.jpg" alt="Zap web listing" style="border:3px solid gray" />
 
+![alt text](./assets/02-CSAGuide-DetermineOptions.jpg#border "Zap web listing")
 
 <br>
 
@@ -122,7 +129,7 @@ return z
 
 Sample Input:
 
-![alt text](./assets/03-Product-Input.jpg "Data Input - Ecwid Order")
+![Avatar](./assets/03-Product-Input.jpg#avatar)
 
 Sample Output:
 
