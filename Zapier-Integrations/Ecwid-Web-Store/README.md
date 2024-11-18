@@ -1,8 +1,3 @@
-<style>
-  img[src$="border"] {
-    border: 5px solid gray;
-  }
-</style>
 
 # Ecwid Web Store Integration - Zapier Python Code
 
@@ -32,7 +27,7 @@ These steps involved taking in the store order and filtering for the specific pr
 <br>
 
 
-<kbd><img src="./assets/01-Ecwid-CSAGuide-Steps1-4.jpg" alt="Steps 1-4" /></kbd>
+<div style="border: 2px solid gray;"><img src="./assets/01-Ecwid-CSAGuide-Steps1-4.jpg" alt="Steps 1-4" /></div>
 
 
 <br>
