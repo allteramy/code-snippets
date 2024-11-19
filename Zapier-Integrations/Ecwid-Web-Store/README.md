@@ -137,6 +137,10 @@ ___
 
 ### Steps 6 through 8 
 
+
+[<b>🡅</b>](#ecwid-web-store-integration---zapier-python-code)
+
+
 Here we check if the order is paid and determine the payment method and pricebook entry IDs.
 
 <br>
