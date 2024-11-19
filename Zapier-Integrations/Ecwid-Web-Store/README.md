@@ -41,7 +41,6 @@ ___
 [<b>🡅</b>](#ecwid-web-store-integration---zapier-python-code)
 <br>
 
-<img src="./assets/02-CSAGuide-DetermineOptions.jpg" alt="Zap web listing" style="border:3px solid gray" />
 
 ![alt text](./assets/02-CSAGuide-DetermineOptions.jpg#border "Zap web listing")
 
@@ -124,7 +123,7 @@ return z
 
 Sample Input:
 
-![Avatar](./assets/03-Product-Input.jpg#avatar)
+![alt text](./assets/03-Product-Input.jpg "Step 5 input")
 
 Sample Output:
 
